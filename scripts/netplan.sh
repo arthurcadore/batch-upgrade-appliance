@@ -11,27 +11,11 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    $ETH_INTERFACE:
+    eno1:
       dhcp4: no
-  vlans:
-    vlan10:
-      id: 10
-      link: $ETH_INTERFACE
-      macaddress: "00:11:22:33:44:10"
-      dhcp4: no
+      dhcp6: no
       addresses: []
-    vlan20:
-      id: 20
-      link: $ETH_INTERFACE
-      macaddress: "00:11:22:33:44:20"
-      dhcp4: no
-      addresses: []
-    vlan30:
-      id: 30
-      link: $ETH_INTERFACE
-      macaddress: "00:11:22:33:44:30"
-      dhcp4: no
-      addresses: []
+      mtu: 1500
 EOF
 
 # Aplicar Netplan

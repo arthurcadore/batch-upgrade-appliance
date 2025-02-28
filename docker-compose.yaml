@@ -1,18 +1,14 @@
 version: '3.9'
 
 networks:
-  vlan10:
+  vlan_net:
     driver: macvlan
     driver_opts:
-      parent: vlan10
-  vlan20:
-    driver: macvlan
-    driver_opts:
-      parent: vlan20
-  vlan30:
-    driver: macvlan
-    driver_opts:
-      parent: vlan30
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 10.10.10.0/24
+          gateway: 10.10.10.1
 
 services:
   tftpserver1:
@@ -23,8 +19,9 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      vlan10:
+      vlan_net:
         ipv4_address: 10.10.10.2
+    mac_address: "00:11:22:33:44:10"
     ports:
       - "69:69/udp"
     privileged: true
@@ -38,8 +35,9 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      vlan20:
+      vlan_net:
         ipv4_address: 10.10.10.2
+    mac_address: "00:11:22:33:44:20"
     ports:
       - "69:69/udp"
     privileged: true
@@ -53,8 +51,9 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      vlan30:
+      vlan_net:
         ipv4_address: 10.10.10.2
+    mac_address: "00:11:22:33:44:30"
     ports:
       - "69:69/udp"
     privileged: true
