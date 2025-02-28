@@ -23,12 +23,12 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      - vlan10
+      vlan10:
+        ipv4_address: 10.10.10.2
     ports:
       - "69:69/udp"
     privileged: true
     restart: always
-
 
   tftpserver2:
     container_name: tftpserver2
@@ -38,7 +38,8 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      - vlan20
+      vlan20:
+        ipv4_address: 10.10.10.2
     ports:
       - "69:69/udp"
     privileged: true
@@ -52,7 +53,8 @@ services:
     volumes:
       - "./data:/tftpshare"
     networks:
-      - vlan30
+      vlan30:
+        ipv4_address: 10.10.10.2
     ports:
       - "69:69/udp"
     privileged: true
