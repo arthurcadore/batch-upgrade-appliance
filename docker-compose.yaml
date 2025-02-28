@@ -5,7 +5,7 @@ services:
     container_name: tftpserver1
     build:
       context: .
-      dockerfile: ./Docker/Dockerfile-TFTP
+      dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
     network_mode: "host"
@@ -19,7 +19,7 @@ services:
     container_name: tftpserver2
     build:
       context: .
-      dockerfile: ./Docker/Dockerfile-TFTP
+      dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
     network_mode: "host"
@@ -32,7 +32,7 @@ services:
     container_name: tftpserver3
     build:
       context: .
-      dockerfile: ./Docker/Dockerfile-TFTP
+      dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
     network_mode: "host"
