@@ -1,5 +1,19 @@
 version: '3.9'
 
+networks:
+  vlan10:
+    driver: macvlan
+    driver_opts:
+      parent: vlan10
+  vlan20:
+    driver: macvlan
+    driver_opts:
+      parent: vlan20
+  vlan30:
+    driver: macvlan
+    driver_opts:
+      parent: vlan30
+
 services:
   tftpserver1:
     container_name: tftpserver1
@@ -8,10 +22,11 @@ services:
       dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
-    network_mode: "host"
-    privileged: true
+    networks:
+      - vlan10
     ports:
       - "69:69/udp"
+    privileged: true
     restart: always
 
 
@@ -22,10 +37,11 @@ services:
       dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
-    network_mode: "host"
-    privileged: true
+    networks:
+      - vlan20
     ports:
       - "69:69/udp"
+    privileged: true
     restart: always
 
   tftpserver3:
@@ -35,8 +51,9 @@ services:
       dockerfile: ./Docker/Dockerfile
     volumes:
       - "./data:/tftpshare"
-    network_mode: "host"
-    privileged: true
+    networks:
+      - vlan30
     ports:
       - "69:69/udp"
+    privileged: true
     restart: always
