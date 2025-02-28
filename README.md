@@ -56,21 +56,21 @@ ip link set vlan30 netns tftp3
 ### Setting Up IP and routes: 
 
 ```bash
-ip netns exec tftp1 ip addr add 10.10.10.2/24 dev vlan10
-ip netns exec tftp1 ip link set vlan10 up
-ip netns exec tftp1 ip route add default via 10.10.10.1 dev vlan10
+sudo ip netns exec tftp1 ip addr add 10.10.10.2/24 dev vlan10
+sudo ip netns exec tftp1 ip link set vlan10 up
+sudo ip netns exec tftp1 ip route add default via 10.10.10.1 dev vlan10
 
-ip netns exec tftp2 ip addr add 10.10.10.2/24 dev vlan20
-ip netns exec tftp2 ip link set vlan20 up
-ip netns exec tftp2 ip route add default via 10.10.10.1 dev vlan20
+sudo ip netns exec tftp2 ip addr add 10.10.10.2/24 dev vlan20
+sudo ip netns exec tftp2 ip link set vlan20 up
+sudo ip netns exec tftp2 ip route add default via 10.10.10.1 dev vlan20
 
-ip netns exec tftp3 ip addr add 10.10.10.2/24 dev vlan30
-ip netns exec tftp3 ip link set vlan30 up
-ip netns exec tftp3 ip route add default via 10.10.10.1 dev vlan30
+sudo ip netns exec tftp3 ip addr add 10.10.10.2/24 dev vlan30
+sudo ip netns exec tftp3 ip link set vlan30 up
+sudo ip netns exec tftp3 ip route add default via 10.10.10.1 dev vlan30
 ```
 
 ### Init the containers using docker-compose
 ```bash
-ip netns exec tftp1 docker-compose -f <path-to-docker-compose> up -d tftp1
-ip netns exec tftp2 docker-compose -f <path-to-docker-compose> up -d tftp2
-ip netns exec tftp3 docker-compose -f <path-to-docker-compose> up -d tftp3
+sudo ip netns exec tftp1 docker compose -f /home/cadore/batch-upgrade-appliance/docker-compose.yaml up -d tftpserver1
+sudo ip netns exec tftp2 docker compose -f /home/cadore/batch-upgrade-appliance/docker-compose.yaml up -d tftpserver2
+sudo ip netns exec tftp3 docker compose -f /home/cadore/batch-upgrade-appliance/docker-compose.yaml up -d tftpserver3

@@ -8,9 +8,9 @@ RUN apk add --no-cache tftp-hpa supervisor
 RUN mkdir -p /tftpshare
 
 RUN mkdir -p /var/log/supervisor /etc/supervisor/conf.d
-COPY ./docker/supervisord-TFTP.conf /etc/supervisord.conf
+COPY ./Docker/supervisord-TFTP.conf /etc/supervisord.conf
 
-COPY ./docker/startup-TFTP.sh /etc/startup.sh
+COPY ./Docker/startup-TFTP.sh /etc/startup.sh
 RUN chmod +x /etc/startup.sh
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Definir variáveis
-DOCKER_COMPOSE_FILE="/home/cadore/batch-upgrade-appliance/docker-compose.yml"
+DOCKER_COMPOSE_FILE="/home/cadore/batch-upgrade-appliance/docker-compose.yaml"
 
 # Criar namespaces de rede
 echo "Criando namespaces de rede..."
@@ -39,8 +39,8 @@ fi
 
 # Rodar os containers dentro dos namespaces
 echo "Iniciando containers..."
-sudo ip netns exec tftp1 docker-compose -f $DOCKER_COMPOSE_FILE up -d tftpserver1
-sudo ip netns exec tftp2 docker-compose -f $DOCKER_COMPOSE_FILE up -d tftpserver2
-sudo ip netns exec tftp3 docker-compose -f $DOCKER_COMPOSE_FILE up -d tftpserver3
+sudo ip netns exec tftp1 docker compose -f $DOCKER_COMPOSE_FILE up -d tftpserver1
+sudo ip netns exec tftp2 docker compose -f $DOCKER_COMPOSE_FILE up -d tftpserver2
+sudo ip netns exec tftp3 docker compose -f $DOCKER_COMPOSE_FILE up -d tftpserver3
 
 echo "Configuração concluída!"
