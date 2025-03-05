@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Definir variáveis
-ETH_INTERFACE="eth0"
+ETH_INTERFACE="eno1"
 NETPLAN_CONFIG="/etc/netplan/01-netcfg.yaml"
 
 # Criar VLANs no Netplan
@@ -19,19 +19,22 @@ network:
       link: $ETH_INTERFACE
       macaddress: "00:11:22:33:44:10"
       dhcp4: no
-      addresses: []
+      addresses:
+        - 10.10.10.1/24
     vlan20:
       id: 20
       link: $ETH_INTERFACE
       macaddress: "00:11:22:33:44:20"
       dhcp4: no
-      addresses: []
+      addresses:
+        - 10.10.10.1/24
     vlan30:
       id: 30
       link: $ETH_INTERFACE
       macaddress: "00:11:22:33:44:30"
       dhcp4: no
-      addresses: []
+      addresses:
+        - 10.10.10.1/24
 EOF
 
 # Aplicar Netplan

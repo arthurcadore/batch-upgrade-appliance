@@ -1,42 +1,43 @@
-version: '3.9'
+version: "3.9"
 
 services:
   tftpserver1:
+    image: batch-upgrade-appliance-tftpserver
     container_name: tftpserver1
-    build:
-      context: .
-      dockerfile: ./Docker/Dockerfile
     volumes:
-      - "./data:/tftpshare"
-    network_mode: "host"
+      - ./data:/tftpshare
+    restart: unless-stopped
     privileged: true
     ports:
-      - "69:69/udp"
-    restart: always
-
+      - 69:69/udp
+    networks:
+      - vlan10_net
 
   tftpserver2:
+    image: batch-upgrade-appliance-tftpserver
     container_name: tftpserver2
-    build:
-      context: .
-      dockerfile: ./Docker/Dockerfile
     volumes:
-      - "./data:/tftpshare"
-    network_mode: "host"
+      - ./data:/tftpshare
+    restart: unless-stopped
     privileged: true
     ports:
-      - "69:69/udp"
-    restart: always
+      - 69:69/udp
+    networks:
+      - vlan20_net
 
   tftpserver3:
+    image: batch-upgrade-appliance-tftpserver
     container_name: tftpserver3
-    build:
-      context: .
-      dockerfile: ./Docker/Dockerfile
     volumes:
-      - "./data:/tftpshare"
-    network_mode: "host"
+      - ./data:/tftpshare
+    restart: unless-stopped
     privileged: true
     ports:
-      - "69:69/udp"
-    restart: always
+      - 69:69/udp
+    networks:
+      - vlan30_net
+
+networks:
+  vlan10_net:
+  vlan20_net:
+  vlan30_net:
